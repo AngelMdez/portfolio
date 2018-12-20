@@ -1,19 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,700');
-
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,700");
 * {
   margin: 0;
   padding: 0;
 }
+
 body {
   background-color: #000;
   height: 200vh;
   font-family: 'Muli', sans-serif;
 }
-.text {
+
+.position {
+  position: relative;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff;
+  -webkit-animation: mymove 1s ease-in-out;
+          animation: mymove 1s ease-in-out;
+}
+
+/* KEYFRAMES */
+@-webkit-keyframes mymove {
+  from {
+    bottom: -30rem;
+  }
+  to {
+    bottom: 0;
+  }
+}
+@keyframes mymove {
+  from {
+    bottom: -30rem;
+  }
+  to {
+    bottom: 0;
+  }
+}
+
+.intro {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/** INTRO CSS **/
+.text {
+  position: fixed;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
   list-style: none;
   border-bottom: 0;
 }
@@ -29,17 +70,21 @@ body {
   font-size: 2em;
   color: #fff;
   opacity: 1;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   max-width: 2em;
 }
-.text.hidden li.spaced {
+
+.text.hidden li.light {
   padding-left: 0;
 }
-.text li.spaced {
+
+.text li.light {
   padding-left: 0.5em;
 }
 
-.text.hidden li.ghost {
+.text.hidden li.dark {
   opacity: 0;
   max-width: 0;
 }
+/*# sourceMappingURL=styles.css.map */

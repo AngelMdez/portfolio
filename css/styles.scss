@@ -10,46 +10,63 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
-.header{
+.position{
+  position: relative;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff;
+  animation: mymove 1s ease-in-out;
+}
 
-  &__intro{
-
-    &__text{
-      
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      list-style: none;
-      border-bottom: 0;
-
-      .hidden {
-        border-bottom: 1px solid #fff;
-  
-        & > li.spaced {
-          padding-left: 0;
-        }
-      }
-
-      & > li{
-        display: inline-block;
-        float: left;
-        font-weight: 700;
-        font-size: 2em;
-        color: #fff;
-        opacity: 1;
-        transition: all 0.5s ease-in-out;
-        max-width: 2em;
-
-        &.spaced {
-          padding-left: 0.5em;
-        }
-
-        &.ghost {
-          opacity: 0;
-          max-width: 0;
-        }
-      }
-    }
+/* KEYFRAMES */
+@keyframes mymove {
+  from {
+    bottom:-30rem;
   }
+  to {
+    bottom: 0;
+  }
+}
+
+
+.intro{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+/** INTRO CSS **/
+.text {
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  list-style: none;
+  border-bottom: 0;
+}
+
+.text.hidden {
+  border-bottom: 1px solid #fff;
+}
+
+.text li {
+  display: inline-block;
+  float: left;
+  font-weight: 700;
+  font-size: 2em;
+  color: #fff;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  max-width: 2em;
+}
+.text.hidden li.light {
+  padding-left: 0;
+}
+.text li.light {
+  padding-left: 0.5em;
+}
+
+.text.hidden li.dark {
+  opacity: 0;
+  max-width: 0;
 }
