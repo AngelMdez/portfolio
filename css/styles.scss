@@ -16,8 +16,39 @@ $keppel: #17252a;
 *{
   margin: 0;
   padding: 0;
+  font-family: $secondary-font;
 }
 
+
+@keyframes slideInDown {
+  from { transform: translateY(501%); }
+  to {transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(501%); }
+  to {transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.fadeInAnimated {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+.slideInRightAnimated{
+  opacity: 1 !important;
+  animation: slideInRight 1s ease both;
+}
+
+.slideInDownAnimated{
+  opacity: 1 !important;
+  animation: slideInDown 1s ease-in-out both;
+}
 
 // HEADER STYLES
 
@@ -31,6 +62,68 @@ header{
   background: cover;
   width: 100%;
   overflow-y:hidden;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 60rem;
+  
+  &__photo{
+    width: 15rem;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background-color: white;
+
+    & > img{
+      height: 19rem;
+      width: 15rem;
+    }
+    
+    &__links{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-content: center;
+      width: 100%;
+      margin: .75rem 0;
+      
+      & > a > img{
+        height: 2rem;
+        widows: 2rem;
+      }
+    }
+
+    &__download{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-content: center;
+
+      & > a{
+        border: .25rem solid black;
+        background-color: #17252A;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        height: 3rem;
+        width: 8rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-decoration: none;
+        font-family: $primary-font;
+      }
+    }
+  }
+
+  &__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
 }
 
@@ -39,6 +132,16 @@ header{
   position: relative;
   color: white;
   margin: 0 auto;
+
+  & > h1{
+    animation-delay: .3s;
+  }
+  & > p{
+    animation-delay: .6s;
+  }
+  & > span{
+    animation-delay: .9s;
+  }
 
   &__pre {
     position: absolute;
@@ -83,6 +186,29 @@ header{
     opacity: .75;
     margin-bottom: 2rem;
     
+  }
+  
+  &__contact{
+    border: .1rem solid white;
+    background-color: transparent;
+    color: white;
+    height: 3rem;
+    text-align: center;
+    width: 8rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 2rem;
+    font-family: $primary-font;
+  }
+
+  &__contact:hover{
+    color: $keppel;
+    background-color: rgba(255,255,255,0.8);
+    border: .1rem solid $keppel;
   }
   
 }
@@ -168,12 +294,13 @@ main{
   &__content{
     font-family: $secondary-font;
 
-    & > p {
+    & > div {
       margin: 2% auto;
       text-indent: 1.25rem;
       opacity: .85;
       font-size: .9rem;
     }
+    
   }
 }
 
@@ -186,29 +313,59 @@ main{
   opacity: .8;
 }
 
-//STUDIES SECTION
+//Portfolio SECTION
 
-#studies{
-  
-}
 
-.studies{
-  padding: 5rem;
-  height: 50vh;
-  max-width: 100%;
+.portfolio{
+
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
+  background-color: $keppel;
+  
+  &__title{
+    margin-top: 4rem;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: $whitish;
+    opacity: 0;
+  }
 
-  &__entry{
-    display: flex;
-    flex-direction: row;
+  &__subtitle{
+    opacity: 0;
+    margin-top: .5rem;
+    width: 6rem;
+    height: .25rem;
+    background-color: $whitish;
+  }
 
-    & > img{
-      filter: grayscale(100%);
-      height: 8rem;
+
+  &__menu{
+
+  }
+
+  &__body {
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(auto,20vw);
+    padding: 4rem;
+    grid-gap: 2rem;
+    
+
+    &__entry{
+      opacity: 0;
+    /* display:flex;
+    align-items: center;
+    justify-content: center; */
+    background-color: $whitish;
+    
+      & > img {
+        height: 100%;
+        width: 100%;
+        //filter: brightness(0) invert(1);
+        //color: white;
+      } 
     }
-
   }
 }
