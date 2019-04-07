@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+@import url('./responsive.css');
 
 $primary-font : 'Maven Pro', sans-serif;
 $secondary-font : 'Rubik', sans-serif;
@@ -19,15 +20,23 @@ $keppel: #17252a;
   font-family: $secondary-font;
 }
 
+.hidden{
+  visibility: hidden; 
+}
 
 @keyframes slideInDown {
-  from { transform: translateY(501%); }
-  to {transform: translateY(0); }
+  from { 
+    transform: translateY(101%);
+    opacity: 0; }
+  to {transform: translateY(0);
+    opacity: 1; }
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(501%); }
-  to {transform: translateX(0); }
+  from { transform: translateX(501%);
+    opacity: 0;  }
+  to {transform: translateX(0);
+    opacity: 1; }
 }
 
 @keyframes fadeIn {
@@ -35,19 +44,24 @@ $keppel: #17252a;
   to {opacity: 1}
 }
 
+
 .fadeInAnimated {
   opacity: 0;
   animation: fadeIn 2s forwards;
 }
 
 .slideInRightAnimated{
-  opacity: 1 !important;
+  opacity: 0;
   animation: slideInRight 1s ease both;
 }
 
 .slideInDownAnimated{
-  opacity: 1 !important;
-  animation: slideInDown 1s ease-in-out both;
+  opacity: 0;
+  animation: slideInDown .75s ease both;
+}
+.fadeInDownAnimatedFast{
+  opacity: 0;
+  animation: fadeIn .5s ease both;
 }
 
 // HEADER STYLES
@@ -68,8 +82,8 @@ header{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  width: 60rem;
+  justify-content: center;
+  //width: 60rem;
   
   &__photo{
     width: 15rem;
@@ -90,8 +104,13 @@ header{
       margin: .75rem 0;
       
       & > a > img{
-        height: 2rem;
-        widows: 2rem;
+        text-align: center;
+        height: 2.5rem;
+        transition: height .2s ease-in-out;
+      }
+
+      & > a > img:hover{
+        transform: scale(1.2);
       }
     }
 
@@ -123,6 +142,7 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 10rem;
   }
 
 }
@@ -222,16 +242,19 @@ header{
 // MAIN STYLES
 
 main{
-  width: 100%;
-  height: 100vh;
+  //width: 100%;
+  //height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  
 }
 
 #experience{
   padding: 5rem;
-  width: 45%;
+  max-width: 800px;
+
+  //width: 45%;
 }
 
 
@@ -256,6 +279,8 @@ main{
 }
 
 .entry {
+
+  margin: 10% auto;
 
   &__title{
     color: $backgroundcolor;
@@ -293,15 +318,42 @@ main{
 
   &__content{
     font-family: $secondary-font;
+    //font-size: .9rem;
+
+    & > span:nth-child(1){
+      text-indent: 1.25rem;
+    }
+
+    & > span,ul {
+      opacity: 0;
+
+    }
 
     & > div {
-      margin: 2% auto;
-      text-indent: 1.25rem;
-      opacity: .85;
-      font-size: .9rem;
+      opacity: 0;
+      margin: 25px auto;
+    }
+
+    & > ul{
+
+      list-style: none;
+
+      & > li{
+
+        margin: 5px 0;
+
+        &::before{
+          content: '\2022';
+          color: $backgroundcolor;
+          margin-right: 10px;
+          font-size: 1.5rem;
+        }
+      }
+
     }
     
   }
+
 }
 
 .divider {
@@ -355,11 +407,25 @@ main{
 
     &__entry{
       opacity: 0;
-    /* display:flex;
-    align-items: center;
-    justify-content: center; */
-    background-color: $whitish;
-    
+      position: relative;
+      /* display:flex;
+      align-items: center;
+      justify-content: center; */
+      background-color: $whitish;
+
+      & > h3 {
+        position: absolute;
+        //z-index:5;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1em;
+        color: white;
+        line-height: 1.4;
+        background: rgba(0, 0, 0, 0.75);
+      
+    }
+
       & > img {
         height: 100%;
         width: 100%;
@@ -368,4 +434,83 @@ main{
       } 
     }
   }
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    &__wrapper {
+      margin: 0;
+    }
+
+    &__photo {
+      display: none;
+    }
+  }
+
+  .intro{
+    &__pre {
+      position: absolute;
+      font-size: 1rem;
+      left: 1.25rem;
+      top: .2rem;
+      font-family: "Rubik", sans-serif;
+      color: #FEFFFF;
+      opacity: .75;
+    }
+
+    & > h1 {
+    font-size: 3rem;
+    }
+
+    & > span {
+      right: -1.8rem;
+      bottom: -.25rem;
+      font-size: 1.5rem;
+    }
+  } 
+
+  main {
+    flex-direction: column;
+    max-width: 768px
+  }
+
+#title {
+  align-self: center;
+
+  .rotateme {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    transform: rotate(0deg);
+  }
+}
+
+.divider {
+  margin: .5rem auto;
+  width: 75%;
+  border-bottom: 3px solid #17252a;
+}
+    
+#experience {
+  padding: .75rem;
+}
+
+.entry__title {
+  padding: 2rem 0;
+
+  & > img {
+    display: none;
+    
+  }
+}
+
+.entry__content {
+  //text-align: justify;
+
+  & > div {
+    margin: 5% auto;
+  }
+}
+
 }

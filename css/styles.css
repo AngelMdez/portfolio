@@ -1,31 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400,700");
 @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro");
+@import url("./responsive.css");
 * {
   margin: 0;
   padding: 0;
   font-family: "Rubik", sans-serif;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 @-webkit-keyframes slideInDown {
   from {
-    -webkit-transform: translateY(501%);
-            transform: translateY(501%);
+    -webkit-transform: translateY(101%);
+            transform: translateY(101%);
+    opacity: 0;
   }
   to {
     -webkit-transform: translateY(0);
             transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideInDown {
   from {
-    -webkit-transform: translateY(501%);
-            transform: translateY(501%);
+    -webkit-transform: translateY(101%);
+            transform: translateY(101%);
+    opacity: 0;
   }
   to {
     -webkit-transform: translateY(0);
             transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -33,10 +42,12 @@
   from {
     -webkit-transform: translateX(501%);
             transform: translateX(501%);
+    opacity: 0;
   }
   to {
     -webkit-transform: translateX(0);
             transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -44,10 +55,12 @@
   from {
     -webkit-transform: translateX(501%);
             transform: translateX(501%);
+    opacity: 0;
   }
   to {
     -webkit-transform: translateX(0);
             transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -76,15 +89,21 @@
 }
 
 .slideInRightAnimated {
-  opacity: 1 !important;
+  opacity: 0;
   -webkit-animation: slideInRight 1s ease both;
           animation: slideInRight 1s ease both;
 }
 
 .slideInDownAnimated {
-  opacity: 1 !important;
-  -webkit-animation: slideInDown 1s ease-in-out both;
-          animation: slideInDown 1s ease-in-out both;
+  opacity: 0;
+  -webkit-animation: slideInDown .75s ease both;
+          animation: slideInDown .75s ease both;
+}
+
+.fadeInDownAnimatedFast {
+  opacity: 0;
+  -webkit-animation: fadeIn .5s ease both;
+          animation: fadeIn .5s ease both;
 }
 
 header {
@@ -119,10 +138,9 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 60rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .header__photo {
@@ -154,8 +172,15 @@ header {
 }
 
 .header__photo__links > a > img {
-  height: 2rem;
-  widows: 2rem;
+  text-align: center;
+  height: 2.5rem;
+  -webkit-transition: height .2s ease-in-out;
+  transition: height .2s ease-in-out;
+}
+
+.header__photo__links > a > img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .header__photo__download {
@@ -208,6 +233,7 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin: 0 10rem;
 }
 
 .intro {
@@ -317,8 +343,6 @@ header {
 }
 
 main {
-  width: 100%;
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -333,7 +357,7 @@ main {
 
 #experience {
   padding: 5rem;
-  width: 45%;
+  max-width: 800px;
 }
 
 #title {
@@ -359,6 +383,10 @@ main {
 
 #title .rotateme > p::first-letter {
   color: #17252a;
+}
+
+.entry {
+  margin: 10% auto;
 }
 
 .entry__title {
@@ -407,11 +435,32 @@ main {
   font-family: "Rubik", sans-serif;
 }
 
-.entry__content > div {
-  margin: 2% auto;
+.entry__content > span:nth-child(1) {
   text-indent: 1.25rem;
-  opacity: .85;
-  font-size: .9rem;
+}
+
+.entry__content > span, .entry__content ul {
+  opacity: 0;
+}
+
+.entry__content > div {
+  opacity: 0;
+  margin: 25px auto;
+}
+
+.entry__content > ul {
+  list-style: none;
+}
+
+.entry__content > ul > li {
+  margin: 5px 0;
+}
+
+.entry__content > ul > li::before {
+  content: '\2022';
+  color: #3AAFA9;
+  margin-right: 10px;
+  font-size: 1.5rem;
 }
 
 .divider {
@@ -466,14 +515,88 @@ main {
 
 .portfolio__body__entry {
   opacity: 0;
+  position: relative;
   /* display:flex;
-    align-items: center;
-    justify-content: center; */
+      align-items: center;
+      justify-content: center; */
   background-color: #FEFFFF;
+}
+
+.portfolio__body__entry > h3 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1em;
+  color: white;
+  line-height: 1.4;
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .portfolio__body__entry > img {
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .header__wrapper {
+    margin: 0;
+  }
+  .header__photo {
+    display: none;
+  }
+  .intro__pre {
+    position: absolute;
+    font-size: 1rem;
+    left: 1.25rem;
+    top: .2rem;
+    font-family: "Rubik", sans-serif;
+    color: #FEFFFF;
+    opacity: .75;
+  }
+  .intro > h1 {
+    font-size: 3rem;
+  }
+  .intro > span {
+    right: -1.8rem;
+    bottom: -.25rem;
+    font-size: 1.5rem;
+  }
+  main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    max-width: 768px;
+  }
+  #title {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+  #title .rotateme {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  .divider {
+    margin: .5rem auto;
+    width: 75%;
+    border-bottom: 3px solid #17252a;
+  }
+  #experience {
+    padding: .75rem;
+  }
+  .entry__title {
+    padding: 2rem 0;
+  }
+  .entry__title > img {
+    display: none;
+  }
+  .entry__content > div {
+    margin: 5% auto;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
