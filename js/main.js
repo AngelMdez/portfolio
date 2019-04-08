@@ -1,4 +1,8 @@
-
+$("#showmore").click(function() {
+  $([document.documentElement, document.body]).animate({
+      scrollTop: $("main").offset().top
+  }, 1000);
+});
 
 
 $(".portfolio__body__entry").on('mouseenter mouseleave', function(e){
