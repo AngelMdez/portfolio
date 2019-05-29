@@ -551,7 +551,6 @@ main {
 }
 
 .portfolio__body__entry > img {
-  height: 50%;
   width: 50%;
   margin: 25px 0;
 }
