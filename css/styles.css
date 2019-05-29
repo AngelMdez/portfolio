@@ -174,8 +174,8 @@ header {
 .header__photo__links > a > img {
   text-align: center;
   height: 2.5rem;
-  -webkit-transition: height .2s ease-in-out;
-  transition: height .2s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
 .header__photo__links > a > img:hover {
@@ -196,6 +196,13 @@ header {
           justify-content: space-evenly;
   -ms-flex-line-pack: center;
       align-content: center;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+}
+
+.header__photo__download:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .header__photo__download > a {
@@ -659,7 +666,6 @@ main {
     font-size: 10px;
   }
   .portfolio__body__entry > img {
-    height: 50%;
     width: 50%;
     margin: 25px 0;
   }
